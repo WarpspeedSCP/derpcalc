@@ -137,7 +137,10 @@ void parse(const std::vector<std::pair<std::string, char>> * tokens, std::vector
     else if(i.second == 's')
     {
       if(i.first == "(")
+      {
         opstack.push (i.first);
+        expect_parens = false;
+      }
       else if(i.first == ")")
         while(!opstack.empty() && opstack.top() != "(" )
         {
@@ -146,11 +149,14 @@ void parse(const std::vector<std::pair<std::string, char>> * tokens, std::vector
         }
       else
       {
-        while(!opstack.empty() && (ops[opstack.top].prec >= ops[i.first].prec))
-        {
-          out -> push_back(opstack.top());
-          opstack.pop();
-        }
+        if(expect_parens)
+          std::cout << "malformed function! : " << i.first << std::endl;
+        else
+          while(!opstack.empty() && (ops[opstack.top()].prec >= ops[i.first].prec))
+          {
+            out -> push_back(opstack.top());
+            opstack.pop();
+          }
         opstack.push(i.first);
       }
     }
@@ -159,12 +165,14 @@ void parse(const std::vector<std::pair<std::string, char>> * tokens, std::vector
       expect_parens = true;
       opstack.push(i.first);
     }
+    //else
+      //out -> push_back(opstack.top());
   }
 
   std::cout << "parsed" <<std::endl;
 
   for(auto i : *out)
   {
-    std::cout << i.first;
+    std::cout << i;
   }
 }

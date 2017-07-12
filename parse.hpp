@@ -20,7 +20,6 @@
 #include <vector>
 #include <utility>
 
-
 void parse(const std::vector< std::pair< std::string, char > > * , std::vector< std::string > *);
 
 #endif /* parse_hpp */
