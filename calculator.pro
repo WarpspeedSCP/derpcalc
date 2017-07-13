@@ -3847,16 +3847,16 @@ HEADERS += \
     include/boost/unordered_map.hpp \
     include/boost/utility.hpp \
     include/boost/variant.hpp \
-    include/boost/visit_each.hpp
+    include/boost/visit_each.hpp \
+    eval.hpp
 
-unix: CONFIG += link_pkgconfig
-unix: PKGCONFIG += ncurses
-
-unix: CONFIG += link_pkgconfig
-unix: PKGCONFIG += mpfr
 
 SOURCES += \
     derp.cpp \
     io.cpp \
     parse.cpp \
-    token.cpp
+    token.cpp \
+    eval.cpp
+
+unix: CONFIG += link_pkgconfig
+unix: PKGCONFIG += ncurses
