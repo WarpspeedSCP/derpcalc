@@ -1,8 +1,8 @@
 # derpcalc
 derpcalc- the multipurpose scientific calculator app
 
-This is a QT Creator project, and to build it, you will need qmake.
-You will also need to install the `libncurses5-dev` library using your package manager.
+This is a QT Creator project, and to build it, you will need qmake (or qt creator).
+You will also need to install the `ncurses` and `mpfr` libraries using your package manager.
 
 This project uses parts of the boost library collection, including -
 
