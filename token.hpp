@@ -2,7 +2,7 @@
 //  token.hpp
 //  derpcalc
 //
-//  Created by WarpDev on 7/11/17.
+//  Created by Raghav on 7/11/17.
 //  Copyright © 2017 WarpDev. All rights reserved.
 //
 
@@ -10,10 +10,8 @@
 #define token_hpp
 
 #include <cctype>
-#include <cstdlib>
 #include <iostream>
 #include <string>
-#include <stack>
 #include <vector>
 #include <utility>
 #include <regex>

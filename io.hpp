@@ -9,7 +9,7 @@
 #ifndef io_hpp
 #define io_hpp
 
-#include <cctype>s
+#include <cctype>
 #include <iostream>
 #include <string>
 

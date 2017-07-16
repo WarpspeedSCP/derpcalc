@@ -11,15 +11,15 @@
 
 #include "real.hpp"
 
-#include "include/boost/unordered_map.hpp"
-#include "include/boost/variant.hpp"
-#include "include/boost/function.hpp"
+#include <boost/unordered_map.hpp>
+#include <boost/variant.hpp>
+#include <boost/function.hpp>
 
 #include <stack>
 #include <string>
 #include <vector>
 #include <utility>
 
-void parse(const std::vector< std::pair< std::string, char > > * , std::vector< std::string > *);
+void parse(const std::vector< std::pair< std::string, char > > & , std::vector< std::string > *);
 
 #endif /* parse_hpp */
