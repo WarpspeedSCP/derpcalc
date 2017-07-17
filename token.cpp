@@ -109,7 +109,7 @@ void tokenise(std::string line, std::vector< std::pair< std::string, char > > * 
   {
     std::regex regx("(a?sinh?|a?cosh?|a?tanh?|sech?|csch?|coth?|exp(n|m1|int|2|10)?|pow|root|(sq|cb)rt|log(n|1p|b|2|10)?|pow|add|sub|mul|div|(g|l)t|(g|l|n)?eq)");
     std::smatch match;
-    for(auto i : *tokens)
+    for(auto &i : *tokens)
     {
       if(i.second == 'v' && std::regex_search(i.first, match, regx))
       {

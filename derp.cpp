@@ -55,7 +55,7 @@ int main()
 
   tokenise(line, &tokens);
 
-  parse(&tokens, &parsed);
+  parse(tokens, &parsed);
 
 
 

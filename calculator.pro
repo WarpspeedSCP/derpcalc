@@ -26,3 +26,5 @@ SOURCES += \
     token.cpp \
     eval.cpp \
     derp.cpp
+
+DEFINES += "DEBUG"
