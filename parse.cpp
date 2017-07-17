@@ -8,54 +8,6 @@
 
 #include "parse.hpp"
 
-#include <stack>
-#include <string>
-#include <vector>
-#include <utility>
-
-
-enum ASSOC
-{
-  AS_N = 0,
-  AS_L,
-  AS_R
-};
-
-struct op
-{
-  int prec;
-  int assoc;
-  bool unary;
-  std::string fn;
-};
-
-boost::unordered_map<std::string, op> ops =
-{
-  {"^", {10, AS_R, 0, "pow"} },
-  {".+", {9, AS_R, 1, "abs"} },
-  {".-", {9, AS_R, 1, "nabs"} },
-  {"*", {8, AS_L, 0, "mul"} },
-  {"/", {8, AS_L, 0, "div"} },
-  {"+", {5, AS_L, 0, "add"} },
-  {"-", {5, AS_L, 0, "sub"} },
-  {"(", {0, AS_N, 0, ""} },
-  {")", {0, AS_N, 0, ""} },
-  {",", {0, AS_N, 0, ""} }
-};
-
-void dummy() {}
-
-real expn(const real * base, const real * exp)
-{
-  return (mpfr::exp( *exp * mpfr::log(*base) ));
-}
-
-real logn(const real * base, const real * thing)
-{
-  return (mpfr::log(*thing) / mpfr::log(*base));
-}
-
-
 void parse(const std::vector<std::pair<std::__cxx11::string, char> > &tokens, std::vector<std::string> * out)
 {
   std::stack<std::string> opstack;

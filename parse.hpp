@@ -17,6 +17,7 @@
 #include <vector>
 #include <utility>
 
-void parse(const std::vector<std::pair<std::__cxx11::string, char> > & , std::vector< std::string > *);
+
+void parse(const std::vector<std::pair<std::string, char> > & , std::vector< vtype > *);
 
 #endif /* parse_hpp */
