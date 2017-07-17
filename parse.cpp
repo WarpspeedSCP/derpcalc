@@ -8,7 +8,7 @@
 
 #include "parse.hpp"
 
-void parse(const std::vector<std::pair<std::__cxx11::string, char> > &tokens, std::vector<std::string> * out)
+void parse(const std::vector<std::pair<std::__cxx11::string, char> > &tokens, std::vector< vtype > * out)
 {
   std::stack<std::string> opstack;
   bool function = false;
@@ -21,7 +21,12 @@ void parse(const std::vector<std::pair<std::__cxx11::string, char> > &tokens, st
         {
           opstack.push("*");
         }
-        out -> push_back(tokens[i].first);
+        {
+        if(tokens[i].second == 'c')
+          out -> push_back(std::stold(tokens[i].first));
+        else
+          out -> push_back(tokens[i].first);
+        }
         if(!opstack.empty())
           if(opstack.top() == ".-" || opstack.top() == ".+")
           {
