@@ -21,11 +21,6 @@ enum ASSOC
   AS_R
 };
 
-
-typedef mpfr::real<1024> real;
-
-//typedef boost::unordered_map<std::string, bfn> tokenmap;
-
 struct op
 {
   int prec;
