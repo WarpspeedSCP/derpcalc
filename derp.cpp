@@ -56,7 +56,7 @@ int main()
 
   parse(tokens, &parsed);
 
-
+  //evaluate(parsed);
 
 #endif
 

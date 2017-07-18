@@ -1,11 +1,11 @@
 src = $(wildcard *.cpp)
 obj = $(src:.cpp=.o)
 
-DBGFLAGS = -DDEBUG -g
+CXXFLAGS = -DDEBUG -g
 LDFLAGS = -lncurses
 
-derpcalc-debug: $(obj)
-	$(CXX) -o $@ $^ $(LDFLAGS) $(DBGFLAGS)
+calculator: $(obj)
+	$(CXX) -o $@ $^ $(LDFLAGS) $(CXXFLAGS)
 
 derpcalc: $(obj)
 	$(CXX) -o $@ $^ $(LDFLAGS)

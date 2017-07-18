@@ -15,7 +15,10 @@ HEADERS += \
     io.hpp \
     parse.hpp \
     token.hpp \
-    eval.hpp
+    eval.hpp \
+    types.hpp \
+    tree.hh \
+    tree_util.hh
 
 
 SOURCES += \
