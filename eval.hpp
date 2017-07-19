@@ -11,6 +11,6 @@
 
 #include "types.hpp"
 
-void evaluate(const std::vector<std::string> &in);
+std::string evaluate(const std::vector<std::string> &in);
 
 #endif // EVAL_HPP

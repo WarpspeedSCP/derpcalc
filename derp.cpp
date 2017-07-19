@@ -56,7 +56,7 @@ int main()
 
   parse(tokens, &parsed);
 
-  evaluate(parsed);
+  std::cout << std::endl << evaluate(parsed) << std::endl;
 
 #endif
 

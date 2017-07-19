@@ -7,9 +7,11 @@ auto sub = [](real a, real b) -> real {return a - b;};
 auto mul = [](real a, real b) -> real {return a * b;};
 auto div = [](real a, real b) -> real {if (b != 0) return a / b; else return 0;};
 auto mod = [](real a, real b) -> real {return (real)((integer)a % (integer)b);};
+
+auto sin = [](real a) -> real {return std::sin(a);};
 };
 
-void evaluate(const std::vector<std::string> &in)
+std::string evaluate(const std::vector<std::string> &in)
 {
   std::stack<std::string> operands;
   real a, b;
@@ -20,39 +22,49 @@ void evaluate(const std::vector<std::string> &in)
 
   for(auto i : in)
   {
+    if((std::isdigit(i[0]) || i[0] == '_' || i[0] == '.') && !std::regex_search(i, match, regx))
     {
-      if((std::isdigit(i[0]) || i[0] == '_' || i[0] == '.') && !std::regex_search(i, match, regx))
+      operands.push(i);
+    }
+    else if(std::ispunct(i[0]) && !(i[0] == '_' || i[0] == '.'))
+    {
+      b = std::stold(operands.top());
+      operands.pop();
+      a = std::stold(operands.top());
+      operands.pop();
+
+      if(i[0] == '+')
       {
-        operands.push(i);
+        std::cout << mathfn::add(a, b) << std::endl;
+        operands.push(boost::lexical_cast<std::string>(mathfn::add(a, b)));
       }
-      else if((std::ispunct(i[0]) && !(i[0] == '_' || i[0] == '.')) || std::regex_search(i, match, regx))
+      if(i[0] == '-')
       {
-        b = std::stold(operands.top());
-        operands.pop();
+        std::cout << mathfn::sub(a, b) << std::endl;
+        operands.push(boost::lexical_cast<std::string>(mathfn::sub(a, b)));
+      }
+      if(i[0] == '*')
+      {
+        std::cout << mathfn::mul(a, b) << std::endl;
+        operands.push(boost::lexical_cast<std::string>(mathfn::mul(a, b)));
+      }
+      if(i[0] == '/')
+      {
+        std::cout << mathfn::div(a, b) << std::endl;
+        operands.push(boost::lexical_cast<std::string>(mathfn::div(a, b)));
+      }
+    }
+    else if(std::regex_search(i, match, regx))
+    {
+      if(i == "sin")
+      {
         a = std::stold(operands.top());
         operands.pop();
 
-        if(i[0] == '+')
-        {
-          std::cout << mathfn::add(a, b) << std::endl;
-          operands.push(boost::lexical_cast<std::string>(mathfn::add(a, b)));
-        }
-        if(i[0] == '-')
-        {
-          std::cout << mathfn::sub(a, b) << std::endl;
-          operands.push(boost::lexical_cast<std::string>(mathfn::sub(a, b)));
-        }
-        if(i[0] == '*')
-        {
-          std::cout << mathfn::mul(a, b) << std::endl;
-          operands.push(boost::lexical_cast<std::string>(mathfn::mul(a, b)));
-        }
-        if(i[0] == '/')
-        {
-          std::cout << mathfn::div(a, b) << std::endl;
-          operands.push(boost::lexical_cast<std::string>(mathfn::div(a, b)));
-        }
+        std::cout << mathfn::sin(a) << std::endl;
+        operands.push(boost::lexical_cast<std::string>(mathfn::sin(a)));
       }
     }
   }
+  return operands.top();
 }
