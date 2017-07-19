@@ -11,8 +11,8 @@
 boost::unordered_map<std::string, op> ops =
 {
   {"^", {10, AS_R, 0, "pow"} },
-  {".+", {9, AS_R, 1, "abs"} },
-  {".-", {9, AS_R, 1, "nabs"} },
+  {"#", {9, AS_R, 1, "abs"} },
+  {"$", {9, AS_R, 1, "nabs"} },
   {"*", {8, AS_L, 0, "mul"} },
   {"/", {8, AS_L, 0, "div"} },
   {"+", {5, AS_L, 0, "add"} },
@@ -44,7 +44,7 @@ void parse(const std::vector<std::pair<std::string, char> > &tokens, std::vector
           out -> push_back(tokens[i].first);
         }
         if(!opstack.empty())
-          if(opstack.top() == ".-" || opstack.top() == ".+")
+          if(opstack.top() == "#" || opstack.top() == "$")
           {
             out -> push_back(opstack.top());
             opstack.pop();
@@ -84,13 +84,13 @@ void parse(const std::vector<std::pair<std::string, char> > &tokens, std::vector
           break;
         case '-' :
           if((i == 0) || ((i > 0) && (tokens[i - 1].second == 's' || tokens[i - 1].first == "(")))
-            opstack.push(".-");
+            opstack.push("$");
           else
             goto derp;
           break;
         case '+' :
-          if(tokens[i - 1].second == 's' || tokens[i - 1].first == "(")
-            opstack.push(".+");
+          if((tokens[i - 1].second == 's' && tokens[i - 1].first != ")") || tokens[i - 1].first == "(")
+            opstack.push("#");
           else
             goto derp;
           break;

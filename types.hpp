@@ -4,6 +4,7 @@
 #include "tree.hh"
 
 typedef long double real;
+typedef long long integer;
 
 enum ASSOC
 {
