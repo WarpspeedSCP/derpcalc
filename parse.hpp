@@ -9,17 +9,16 @@
 #ifndef parse_hpp
 #define parse_hpp
 
-#include "real.hpp"
-
-#include "include/boost/unordered_map.hpp"
-#include "include/boost/variant.hpp"
-#include "include/boost/function.hpp"
+#include <boost/unordered_map.hpp>
 
 #include <stack>
 #include <string>
 #include <vector>
 #include <utility>
+#include <iostream>
 
-void parse(const std::vector< std::pair< std::string, char > > * , std::vector< std::string > *);
+#include "types.hpp"
+
+void parse(const std::vector<std::pair<std::string, char> > & , std::vector<std::string> *);
 
 #endif /* parse_hpp */

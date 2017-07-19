@@ -16,13 +16,13 @@
 std::string input(std::string prompt = "")
 {
   std::string out, temp;
-  
+
   unsigned pos = 0;                                                   //Points to the current character in out
   short ch;
   bool insert = false;                                                //To check for insert mode
-  int y, x, mx = getmaxx(stdscr), minx = prompt.length();             //x & y are the currently recorded positions on the screen
+  int y, x, mx = getmaxx(stdscr);             //x & y are the currently recorded positions on the screen
   addstr(prompt.c_str());
-  
+
   while(true)
   {
     ch = getch();                                                     //Get next character
@@ -47,7 +47,7 @@ std::string input(std::string prompt = "")
         }                                                             //
         else                                                          //
           out.erase(--pos, 1);                                        //Erase preceding character
-        
+
         if(pos == out.length())                                       //End of the line
         {
           addch(' ');                                                 //No need for fancy stuff here
