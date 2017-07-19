@@ -83,7 +83,7 @@ void parse(const std::vector<std::pair<std::string, char> > &tokens, std::vector
           }
           break;
         case '-' :
-          if((i == 0) || ((i > 0) && (tokens[i - 1].second == 's' || tokens[i - 1].first == "(")))
+          if((i == 0) || ((i > 0) && ((tokens[i - 1].second == 's' && tokens[i - 1].first != ")") || tokens[i - 1].first == "(")))
             opstack.push("$");
           else
             goto derp;
