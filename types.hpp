@@ -1,8 +1,6 @@
 #ifndef TYPES_HPP
 #define TYPES_HPP
 
-#include "tree.hh"
-
 typedef long double real;
 typedef long long integer;
 

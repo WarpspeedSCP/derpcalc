@@ -2,13 +2,18 @@
 
 namespace mathfn
 {
-auto add = [](real a, real b) -> real {return a + b;};
-auto sub = [](real a, real b) -> real {return a - b;};
-auto mul = [](real a, real b) -> real {return a * b;};
-auto div = [](real a, real b) -> real {if (b != 0) return a / b; else return 0;};
-auto mod = [](real a, real b) -> real {return (real)((integer)a % (integer)b);};
+  auto add = [](real a, real b) -> real {return a + b;};
+  auto sub = [](real a, real b) -> real {return a - b;};
+  auto mul = [](real a, real b) -> real {return a * b;};
+  auto div = [](real a, real b) -> real {if (b != 0) return a / b; else return 0;};
+  auto mod = [](real a, real b) -> real {return (real)((integer)a % (integer)b);};
 
-auto sin = [](real a) -> real {return std::sin(a);};
+  auto sin = [](real a) -> real {return std::sin(a);};
+  auto cos = [](real a) -> real {return std::cos(a);};
+  auto tan = [](real a) -> real {return std::tan(a);};
+
+  auto sec = [](real a) -> real {return 1/std::cos(a);};
+  auto csc = [](real a) -> real {return 1/std::sin(a);};
 };
 
 std::string evaluate(const std::vector<std::string> &in)
@@ -53,6 +58,11 @@ std::string evaluate(const std::vector<std::string> &in)
         std::cout << mathfn::div(a, b) << std::endl;
         operands.push(boost::lexical_cast<std::string>(mathfn::div(a, b)));
       }
+      if(i[0] == '%')
+      {
+        std::cout << mathfn::mod(a, b) << std::endl;
+	operands.push(boost::lexical_cast<std::string>(mathfn::mod(a, b)));
+      }
     }
     else if(std::regex_search(i, match, regx))
     {
@@ -64,6 +74,24 @@ std::string evaluate(const std::vector<std::string> &in)
         std::cout << mathfn::sin(a) << std::endl;
         operands.push(boost::lexical_cast<std::string>(mathfn::sin(a)));
       }
+      if(i == "cos")
+      {
+        a = std::stold(operands.top());
+        operands.pop();
+
+        std::cout << mathfn::cos(a) << std::endl;
+        operands.push(boost::lexical_cast<std::string>(mathfn::cos(a)));
+      }
+      if(i == "tan")
+      {
+        a = std::stold(operands.top());
+        operands.pop();
+
+        std::cout << mathfn::tan(a) << std::endl;
+        operands.push(boost::lexical_cast<std::string>(mathfn::tan(a)));
+      }
+
+
     }
   }
   return operands.top();
