@@ -1,11 +1,12 @@
 #include "eval.hpp"
+#include <limits>
 
 namespace mathfn
 {
   auto add = [](real a, real b) -> real {return a + b;};
   auto sub = [](real a, real b) -> real {return a - b;};
   auto mul = [](real a, real b) -> real {return a * b;};
-  auto div = [](real a, real b) -> real {if (b != 0) return a / b; else return 0;};
+  auto div = [](real a, real b) -> real {if (b != 0) return a / b; else return std::numeric_limits<real>::infinity();};
   auto mod = [](real a, real b) -> real {return (real)((integer)a % (integer)b);};
 
   auto sin = [](real a) -> real {return std::sin(a);};
@@ -14,7 +15,10 @@ namespace mathfn
 
   auto sec = [](real a) -> real {return 1/std::cos(a);};
   auto csc = [](real a) -> real {return 1/std::sin(a);};
-};
+  auto cot = [](real a) -> real {return 1/std::tan(a);};
+
+  auto pow = [](real a, real b) -> real {return std::pow(a, b);};
+}
 
 std::string evaluate(const std::vector<std::string> &in)
 {
@@ -33,8 +37,11 @@ std::string evaluate(const std::vector<std::string> &in)
     }
     else if(std::ispunct(i[0]) && !(i[0] == '_' || i[0] == '.'))
     {
-      b = std::stold(operands.top());
-      operands.pop();
+      if(i[0] != '$')
+      {
+        b = std::stold(operands.top());
+        operands.pop();
+      }
       a = std::stold(operands.top());
       operands.pop();
 
@@ -61,8 +68,15 @@ std::string evaluate(const std::vector<std::string> &in)
       if(i[0] == '%')
       {
         std::cout << mathfn::mod(a, b) << std::endl;
-	operands.push(boost::lexical_cast<std::string>(mathfn::mod(a, b)));
+        operands.push(boost::lexical_cast<std::string>(mathfn::mod(a, b)));
       }
+      if(i[0] == '^')
+      {
+        std::cout << mathfn::pow(a, b) << std::endl;
+        operands.push(boost::lexical_cast<std::string>(mathfn::mod(a, b)));
+      }
+      if(i[0] == '$')
+        operands.push(boost::lexical_cast<std::string>(-a));
     }
     else if(std::regex_search(i, match, regx))
     {

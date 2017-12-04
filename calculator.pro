@@ -30,3 +30,5 @@ SOURCES += \
     derp.cpp
 
 DEFINES += "DEBUG"
+
+LIBS += -lncurses

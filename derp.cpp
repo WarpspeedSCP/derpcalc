@@ -11,7 +11,7 @@
  *
  * This function starts curses mode with cbreak and keypad enabled.
  */
-void init_curses()
+void derp_init_curses()
 {
   initscr();
   cbreak();
@@ -47,7 +47,8 @@ int main()
 #ifdef DEBUG
 
   line.clear();
-  init_curses();
+
+  derp_init_curses();
 
   line = input("");
   endwin();
